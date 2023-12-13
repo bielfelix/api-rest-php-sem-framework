@@ -102,4 +102,4 @@ class MySQL
     {
         return $this->db;
     }
-}
+} 
