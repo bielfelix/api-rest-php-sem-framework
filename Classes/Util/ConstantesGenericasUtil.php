@@ -39,5 +39,3 @@ abstract class ConstantesGenericasUtil
     public const TIPO = 'tipo';
     public const RESPOSTA = 'resposta';
 }
-
-?>

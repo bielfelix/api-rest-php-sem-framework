@@ -4,32 +4,25 @@ namespace Repository;
 
 use DB\MySQL;
 
-class UsuariosRepository{
+class UsuariosRepository
+{
+    private object $MySQL;
+    const TABELA = 'usuarios';
 
-	private object $MySQL;
-	public const TABELA = 'usuarios';
-
-	/**
+    /**
      * UsuariosRepository constructor.
      */
-	public function __construct(){
-
-		$this->MySQL = new MySQL();
-	}
-
-	/**
-     * @return MySQL|object
-     */
-	public function getMySQL(){
-
-		return $this->MySQL;
-	}
+    public function __construct()
+    {
+        $this->MySQL = new MySQL();
+    }
 
     /**
      * @param $login
      * @return int
      */
-    public function getRegistroByLogin($login){
+    public function getRegistroByLogin($login)
+    {
         $consulta = 'SELECT * FROM ' . self::TABELA . ' WHERE login = :login';
         $stmt = $this->MySQL->getDb()->prepare($consulta);
         $stmt->bindParam(':login', $login);
@@ -42,7 +35,8 @@ class UsuariosRepository{
      * @param $senha
      * @return int
      */
-    public function insertUser($login, $senha){
+    public function insertUser($login, $senha)
+    {
         $consultaInsert = 'INSERT INTO ' . self::TABELA . ' (login, senha) VALUES (:login, :senha)';
         $this->MySQL->getDb()->beginTransaction();
         $stmt = $this->MySQL->getDb()->prepare($consultaInsert);
@@ -58,18 +52,23 @@ class UsuariosRepository{
      * @param $senha
      * @return int
      */
-    public function updateUser($id, $dados){
+    public function updateUser($id, $dados)
+    {
         $consultaUpdate = 'UPDATE ' . self::TABELA . ' SET login = :login, senha = :senha WHERE id = :id';
         $this->MySQL->getDb()->beginTransaction();
         $stmt = $this->MySQL->getDb()->prepare($consultaUpdate);
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':login', $dados['login']);
-        $stmt->bindParam(':senha', $dados['senha']);
+        $stmt->bindValue(':login', $dados['login']);
+        $stmt->bindValue(':senha', $dados['senha']);
         $stmt->execute();
         return $stmt->rowCount();
     }
 
-
-
+    /**
+     * @return MySQL|object
+     */
+    public function getMySQL()
+    {
+        return $this->MySQL;
+    }
 }
-

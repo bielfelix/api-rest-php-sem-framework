@@ -6,25 +6,25 @@ use DB\MySQL;
 use InvalidArgumentException;
 use Util\ConstantesGenericasUtil;
 
-class TokensAutorizadosRepository{
+class TokensAutorizadosRepository
+{
+    private object $MySQL;
+    public const TABELA = 'tokens_autorizados';
 
-	private object $MySQL;
-	public const TABELA = 'tokens_autorizados';
-
-	/**
+    /**
      * UsuariosRepository constructor.
      */
-	public function __construct(){
+    public function __construct()
+    {
+        $this->MySQL = new MySQL();
+    }
 
-		$this->MySQL = new MySQL();
-	}
-
-	/**
+    /**
      * @param $token
      */
-	public function validarToken($token){
-
-		$token = str_replace([' ', 'Bearer'], '', $token);
+    public function validarToken($token)
+    {
+        $token = str_replace([' ', 'Bearer'], '', $token);
 
         if ($token) {
             $consultaToken = 'SELECT id FROM ' . self::TABELA . ' WHERE token = :token AND status = :status';
@@ -39,13 +39,13 @@ class TokensAutorizadosRepository{
         } else {
             throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_TOKEN_VAZIO);
         }
-	}
+    }
 
-	/**
+    /**
      * @return MySQL|object
      */
-	public function getMySQL(){
-
-		return $this->MySQL;
-	}
+    public function getMySQL()
+    {
+        return $this->MySQL;
+    }
 }
