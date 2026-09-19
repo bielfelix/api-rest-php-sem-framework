@@ -1,54 +1,65 @@
-# API REST em PHP 7.4.x
+# REST API in PHP 7.4
 
-API REST desenvolvida à fim de aprender conceitos relacionadas à webservice na linguagem PHP.
+A small REST API built without a framework to study routing, authentication, validation, repositories, services, PDO and JSON responses directly in PHP.
 
-Não segue nenhum modelo arquitetural de software, como MVC por exemplo. 
+This is an older project and I keep it public as part of my backend engineering history.
 
-Utilização de conceitos como Repository, Service, Validator e Util.
+## What it demonstrates
 
-## Utilização
+- PHP 7.4
+- Object-oriented PHP
+- Manual autoloading
+- Namespaces
+- PDO
+- MySQL
+- Repository and service separation
+- Request validation
+- Bearer authentication
+- JSON responses
+- GET, POST, PUT and DELETE endpoints
 
-Alterar o arquivo bootstrap.php na pasta raíz, para configuração dos dados do ambiente.
-Criar o banco webservice e importar o script script_banco.sql
+## Structure
 
+```text
+Classes/
+  DB/
+  Repository/
+  Service/
+  Util/
+  Validator/
 
-## Características e tecnologias
+bootstrap.php
+autoload.php
+index.php
+script_banco.sql
+```
 
-* PHP 7.4.x
-* Modelo REST
-* Orientação à Objetos(POO)
-* Clean Code
-* JSON
-* Autoloading de classes
-* Namespaces
-* PDO
-* MySQL
-* Bearer Authentication
-* Métodos GET, PUT, POST e DELETE
+## Routes
 
-### Rotas
+```text
+GET    /usuarios/listar
+GET    /usuarios/listar/{id}
+POST   /usuarios/cadastrar
+PUT    /usuarios/atualizar/{id}
+DELETE /usuarios/deletar/{id}
+```
 
-* **GET**
+## Local setup
 
-* /usuarios/listar
+1. Create a MySQL database named `webservice`.
+2. Import `script_banco.sql`.
+3. Configure the database values in `bootstrap.php`.
+4. Serve the project with Apache or another environment compatible with the included `.htaccess`.
 
-* /usuarios/listar/{id}
+## Historical context
 
-* **DELETE**
+This project intentionally remains close to the way I originally built it. It is not meant to represent my current preferred architecture or PHP version.
 
-* /usuarios/deletar/{id}
+Its value in the portfolio is showing direct experience with lower-level PHP web-service concepts without relying on a framework.
 
-* **POST**
+## Author
 
-* /usuarios/cadastrar
+Gabriel Felix
 
-* **PUT**
-
-* /usuarios/atualizar/{id}
-
-### Autor
-
-**Gabriel Felix**
-
-LinkedIn: https://www.linkedin.com/in/biel-felix/
-
+LinkedIn:
+https://www.linkedin.com/in/biel-felix/
