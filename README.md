@@ -1,6 +1,6 @@
 # REST API in PHP 7.4
 
-A small REST API built without a framework to study routing, authentication, validation, repositories, services, PDO and JSON responses directly in PHP.
+A compact REST API built without a framework to demonstrate routing, authentication, validation, repositories, services, PDO and JSON responses directly in PHP.
 
 This is an older project and I keep it public as part of my backend engineering history.
 
